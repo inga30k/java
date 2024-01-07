@@ -1,0 +1,58 @@
+public class Aplicacion {
+    public static void main(String[] args) {
+        Scanner warriors = new Scanner(System.in);
+        int[] arreglo = new int[10];
+        arreglo[0]=4;
+        arreglo[1]=6;
+        arreglo[2]=8;
+        arreglo[3]=9;
+        arreglo[4]=10;
+        arreglo[5]=3;
+        arreglo[6]=1;
+        arreglo[7]=11;
+        arreglo[8]=15;
+        arreglo[9]=12;      
+        System.out.println("Ingrese valores para el arreglo de 10 elementos:");
+        for (int i = 0; i < 10; i++) {
+            System.out.print("Elemento " + (i + 1) + ": ");
+            arreglo[i] = warriors.nextInt();
+        }
+        System.out.println("Arreglo original:");
+        mostrarArreglo(arreglo);
+        int[] nuevoArreglo = eliminarElementos(arreglo, 2, 4, 8);
+        System.out.println("Arreglo después de eliminar elementos en las posiciones 2, 4 y 8:");
+        mostrarArreglo(nuevoArreglo);
+        warriors.close();
+    }
+    private static int[] eliminarElementos(int[] arreglo, int... posiciones) {
+        int nuevosElementos = arreglo.length - posiciones.length;
+        int[] nuevoArreglo = new int[nuevosElementos];
+
+        int j = 0;
+        for (int i = 0; i < arreglo.length; i++) {
+            if (!contiene(posiciones, i)) {
+                nuevoArreglo[j] = arreglo[i];
+                j++;
+            }
+        }
+
+        return nuevoArreglo;
+    }
+
+    private static boolean contiene(int[] arreglo, int valor) {
+        for (int elemento : arreglo) {
+            if (elemento == valor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    
+    private static void mostrarArreglo(int[] arreglo) {
+        for (int elemento : arreglo) {
+            System.out.print(elemento + " ");
+        }
+        System.out.println();
+    }
+}
